@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Geiger Live</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="/static/styles.css"/>
+</head>
+
+<body>
+  <main class="col">
+
+    <header class="hero">
+      <div class="title">
+        <div class="rad">☢</div>
+        <div>
+          <h1>Geiger TNP</h1>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="resetBtn" class="btn btn-reset">RESET GENERAL</button>
+        <label class="toggle">
+          <input type="checkbox" id="soundToggle"/>
+          Sonido “pi!”
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="debugToggle"/>
+          Debug UI
+        </label>
+      </div>
+    </header>
+
+    <section class="panel">
+      <h2> </h2>
+      <div class="metrics">
+        <div class="metric">
+          <div class="label">Total cuentas</div>
+          <div class="value">
+            <span id="totalCount">0</span>
+            <span id="blinkDot" class="blink-dot"></span>
+          </div>
+        </div>
+
+        <div class="metric">
+          <div class="label">Tiempo</div>
+          <div class="value">
+            <span id="elapsedSec">0</span>
+            <span class="unit">s</span>
+          </div>
+        </div>
+
+        <div class="metric">
+          <div class="label">Tiempo desde último pulso</div>
+          <div class="value">
+            <span id="lastAge">—</span>
+            <span class="unit">s</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="debugBox" class="debug-box hidden">
+        <div class="label">Debug</div>
+        <pre id="debugPre">{}</pre>
+        <div class="small">
+          Si no llegan pulsos aquí pero sí en geiger_print.py,
+          es casi seguro un tema de pin/pull_up o cableado.
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2> </h2>
+      <div class="chart-wrap">
+        <canvas id="timeChart"></canvas>
+      </div>
+      <div id="activityCaption" class="caption">
+        Actividad efectiva observada: <b>0.00</b> ± <b>0.00</b> Bq
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2></h2>
+      <div class="chart-wrap">
+        <canvas id="dtChart"></canvas>
+      </div>
+    </section>
+
+    <footer class="foot">
+      Geiger by Xuan
+    </footer>
+
+  </main>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
+
